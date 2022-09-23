@@ -5,20 +5,9 @@
     <title>METANIT.COM</title>
 </head>
 <body>
-<script>
-sendUser();
-async function sendUser() {
-    const response = await fetch("/user", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            name: "Tom",
-            age: 37
-        })
-    });
-    const responseText = await response.text();
-    console.log(responseText);
-};
-</script>
+
+    <span>{userName}</span>
+    <span>{userEmail}</span>
+
 </body>
 </html>

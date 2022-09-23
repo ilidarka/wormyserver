@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ilidarka/wormyserver/issues"
   },
-  "homepage": "https://github.com/ilidarka/wormyserver#readme"
+  "homepage": "https://github.com/ilidarka/wormyserver#readme",
+  "dependencies": {
+    "pg": "^8.8.0"
+  }
 }

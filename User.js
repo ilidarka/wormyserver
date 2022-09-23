@@ -1,8 +1,17 @@
 class User {
 
-    constructor(id, username, password, role, score) {
+    constructor() {}
+
+    constructor(username, email, password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    constructor(id, username, email, password, role, score) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.role = role;
         this.score = score;
@@ -20,6 +29,12 @@ class User {
     set username(value) {
         this.username = value;
     };   
+    get email() {
+        return this.email;
+    }
+    set email(value) {
+        this.email = value;
+    }
     get password() {
         return this.password;
     };
@@ -39,10 +54,6 @@ class User {
         this.role = value;
     };
     isAdmin() {
-        if(this.role === "ADMIN") {
-            return true;
-        } else {
-            return false;
-        }
+        this.role === "ADMIN" ? true : false;
     }
 };

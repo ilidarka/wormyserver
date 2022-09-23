@@ -5,19 +5,13 @@ const port = 3000;
 const hostName = "127.0.0.1";
 
 const server = http.createServer((req, res) => {
+    fs.readFile("index.html", "utf8", (err, data) => {
+        let userName = "name";
+        let userEmail = "email";
 
-    if(req.url === "/user") {
-
-        const buffer = [];
-
-        for await (const chunk) {
-
-        }
-        
-    } else {
-        fs.readFile("index.html", (error, data) => res.end(data));
-    }
-
+        data = data.replace("{userName}", userName).replace("{userEmail}", userEmail);
+        res.end(data);
+    });
 });
 
 server.listen(port, hostName, () => {
