@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>METANIT.COM</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./clientScript.js"></script>
 </head>
 <body>
-
-    <span>{userName}</span>
-    <span>{userEmail}</span>
+    
+    <div class="loginForm">
+        <span>Введите логи</span>
+        <input class="loginInput" type="text" >
+        <span>Введите пароль</span>
+        <input class="passwordInput" type="text">
+        <button class="loginButton" onclick="sendUser()">Войти</button>
+    </div>
 
 </body>
 </html>

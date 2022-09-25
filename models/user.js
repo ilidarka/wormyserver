@@ -1,20 +1,11 @@
-class User {
+const db = require('../queries');
 
-    constructor() {}
+module.exports = class User {
 
     constructor(username, email, password) {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    constructor(id, username, email, password, role, score) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.score = score;
     };
 
     get id() {
@@ -55,5 +46,8 @@ class User {
     };
     isAdmin() {
         this.role === "ADMIN" ? true : false;
-    }
-};
+    };
+    static getAllUsers() {
+        db.getAllUsers();
+    };
+}

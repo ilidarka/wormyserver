@@ -4,14 +4,24 @@ const fs = require("fs");
 const port = 3000;
 const hostName = "127.0.0.1";
 
-const server = http.createServer((req, res) => {
-    fs.readFile("index.html", "utf8", (err, data) => {
-        let userName = "name";
-        let userEmail = "email";
+const server = http.createServer(async (req, res) => {
 
-        data = data.replace("{userName}", userName).replace("{userEmail}", userEmail);
-        res.end(data);
-    });
+    if(req.url === "/") {
+
+        const buffers = [];
+
+        for await (const chunk of req) {
+            buffers.push(chunk);
+        }
+
+        const user = JSON.parse(Buffer.concat(buffers).toString());
+        console.log(user);
+        res.end("data recieved");
+
+    } else {
+        fs.readFile("index.html", (err, data) => res.end(data));
+    }
+
 });
 
 server.listen(port, hostName, () => {
