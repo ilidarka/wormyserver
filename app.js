@@ -5,7 +5,7 @@ const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 
 app.set("view engine", "hbs");
-app.use(express.urlencoded({extended: false}));
+app.set("views", "templates");
 
 app.use(express.json());
 
