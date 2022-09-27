@@ -8,6 +8,8 @@ const io = new Server(server);
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 
+app.use(express.json());
+
 app.set('view engine', 'hbs');
 app.set("views");
 
