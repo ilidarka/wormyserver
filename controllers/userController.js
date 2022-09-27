@@ -8,9 +8,8 @@ class UserController {
     };
     async getUsers(req, res) {
         const users = await db.query('SELECT * FROM users');
-        res.json(users.rows);
         res.render('users.hbs', {
-            usersList: users.rows[0] 
+            usersList: users.rows 
         });
     };
     async getUserById(req, res) {
