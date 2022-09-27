@@ -4,7 +4,6 @@ const userRouter = express.Router();
  
 userRouter.get('/', userController.getUsers);
 userRouter.get('/:id', userController.getUserById);
-userRouter.post('/registration', userController.createUser);
 userRouter.put('/updateUser/:id', userController.updateUser);
 userRouter.delete('/deleteUser/:id', userController.deleteUser);
  
