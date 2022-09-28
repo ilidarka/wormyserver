@@ -5,6 +5,8 @@ const server = http.createServer(app);
 const {Server} = require("socket.io");
 const io = new Server(server);
 
+const port = process.env.PORT || 3000;
+
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 
@@ -31,6 +33,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log("Сервер ожидает подключения...");
+server.listen(port, () => {
+    console.log("Server started on port: " + port);
 });

@@ -9,6 +9,6 @@ homeRouter.get("/", homeController.index);
 homeRouter.get("/registration", urlencodedParser, homeController.registration);
 homeRouter.post("/registration", urlencodedParser, homeController.createUser);
 homeRouter.get("/signin", homeController.signIn);
-homeRouter.post("/signin", homeController.authoriseUser);
+homeRouter.post("/signin", homeController.authorizeUser);
  
 module.exports = homeRouter;

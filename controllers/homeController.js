@@ -14,7 +14,7 @@ class homeController {
     async signIn(req, res) {
         res.render('signin.hbs');
     };
-    async authoriseUser(req, res) {
+    async authorizeUser(req, res) {
         const {username, userpassword} = req.body;
         const authorizedUser = await db.query('SELECT * FROM users WHERE username = $1 AND userpassword = $2', [username, userpassword]);
         res.json(authorizedUser.rows);
