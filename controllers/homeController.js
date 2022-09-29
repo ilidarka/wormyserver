@@ -1,4 +1,4 @@
-const db = require('../db');
+const userModel = require('../models/user');
 
 class homeController {
     async index(req, res) {
@@ -7,17 +7,23 @@ class homeController {
     async registration(req, res) {
         res.render('registration.hbs');
     };
-    async createUser(req ,res) {
-        const {username, useremail, userpassword} = req.body;
-        const newUser = await db.query('INSERT INTO users (username, useremail, userpassword) values ($1, $2, $3) RETURNING *', [username, useremail, userpassword]);        
+    async registerUser(req ,res) {
+        const candidate = await userModel.isExists(req.body);
+        if(candidate) {
+            return res.status(400).json({message: "Такой пользователь уже существует"});
+        }
+        const newUser = await userModel.createUser(req.body);
+        return res.status(200).json(newUser.rows[0]);
     };
     async signIn(req, res) {
         res.render('signin.hbs');
     };
     async authorizeUser(req, res) {
-        const {username, userpassword} = req.body;
-        const authorizedUser = await db.query('SELECT * FROM users WHERE username = $1 AND userpassword = $2', [username, userpassword]);
-        res.json(authorizedUser.rows);
+        const candidate = await userModel.findUser(req.body);
+        if(candidate) {
+            return res.status(200).json(candidate);
+        }
+        return res.status(400).json({message: "Такого пользователя нет"});
     };
 };
 

@@ -7,7 +7,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: false,});
  
 homeRouter.get("/", homeController.index);
 homeRouter.get("/registration", urlencodedParser, homeController.registration);
-homeRouter.post("/registration", urlencodedParser, homeController.createUser);
+homeRouter.post("/registration", urlencodedParser, homeController.registerUser);
 homeRouter.get("/signin", homeController.signIn);
 homeRouter.post("/signin", homeController.authorizeUser);
  

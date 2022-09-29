@@ -1,48 +1,30 @@
-module.exports = class User {
+const db = require('../db');
 
-    constructor(username, email, password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
+class User {
+
+    async createUser(data) {
+        const newUser = await db.query('INSERT INTO users (username, useremail, userpassword) values ($1, $2, $3) RETURNING *', [data.username, data.useremail, data.userpassword]);        
+        return newUser;
     };
 
-    get id() {
-        return this.id;
+    async findUser(data) {
+        const user = await db.query('SELECT * FROM users WHERE username = $1 AND useremail = $2 AND userpassword = $3', [data.username, data.useremail, data.userpassword]);
+        if(user.rows.length != 0) {
+            return user.rows[0];
+        } else {
+            return false;
+        }
     };
-    set id(value) {
-        this.id = value;
+
+    async isExists(data) {
+        const user = await db.query('SELECT * FROM users WHERE username = $1 OR useremail = $2', [data.username, data.useremail]);
+        if(user.rows.length != 0) {
+            return true;
+        } else {
+            return false;
+        }
     };
-    get username() {
-        return this.username;
-    };
-    set username(value) {
-        this.username = value;
-    };   
-    get email() {
-        return this.email;
-    }
-    set email(value) {
-        this.email = value;
-    }
-    get password() {
-        return this.password;
-    };
-    set password(value) {
-        this.password = value;
-    };   
-    get score() {
-        return this.score;
-    };
-    set score(value) {
-        this.score = value;
-    };
-    get role() {
-        return this.role;
-    };
-    set role(value) {
-        this.role = value;
-    };
-    isAdmin() {
-        this.role === "ADMIN" ? true : false;
-    };
-}
+
+};
+
+module.exports = new User();
