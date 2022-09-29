@@ -7,16 +7,14 @@ const io = new Server(server);
 
 const port = process.env.PORT || 3000;
 
-const userRouter = require("./routes/userRouter.js");
-const homeRouter = require("./routes/homeRouter.js");
+const routes = require('./routes/mainRoutes');
 
 app.use(express.json());
 
 app.set('view engine', 'hbs');
 app.set("views");
 
-app.use("/users", userRouter);
-app.use("/", homeRouter);
+app.use('/api', routes);
 
 app.use((req, res, next) => {
     res.status(404).send("Страница не найдена");
